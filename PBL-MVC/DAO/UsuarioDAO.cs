@@ -17,7 +17,6 @@ namespace PBL_MVC.DAO
             p[0] = new SqlParameter("id", usuario.Id);
             p[1] = new SqlParameter("nome", usuario.Nome);
             p[2] = new SqlParameter("idEmpresa", usuario.IdEmpresa);
-
             p[3] = new SqlParameter("cargo", usuario.Cargo);
             return p;
         }
