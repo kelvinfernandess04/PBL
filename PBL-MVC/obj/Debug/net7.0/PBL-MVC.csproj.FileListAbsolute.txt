@@ -28,3 +28,4 @@ C:\Users\081220005\Desktop\PBL-MVC\PBL-MVC\obj\Debug\net7.0\refint\PBL-MVC.dll
 C:\Users\081220005\Desktop\PBL-MVC\PBL-MVC\obj\Debug\net7.0\PBL-MVC.pdb
 C:\Users\081220005\Desktop\PBL-MVC\PBL-MVC\obj\Debug\net7.0\PBL-MVC.genruntimeconfig.cache
 C:\Users\081220005\Desktop\PBL-MVC\PBL-MVC\obj\Debug\net7.0\ref\PBL-MVC.dll
+C:\Users\081220005\Desktop\PBL-MVC\PBL-MVC\obj\Debug\net7.0\PBL-MVC.csproj.AssemblyReference.cache
