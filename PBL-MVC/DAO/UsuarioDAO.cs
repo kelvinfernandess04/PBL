@@ -1,11 +1,6 @@
 ﻿using PBL_MVC.Models;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PBL_MVC.DAO
 {
@@ -31,20 +26,18 @@ namespace PBL_MVC.DAO
 
             return u;
         }
-        public UsuarioViewModel ValidarUsuario(string username, string password)
+        public UsuarioViewModel ValidarUsuario(string nome, string senha)
         {
             var p = new SqlParameter[]
             {
-                new SqlParameter("username", username),
-                new SqlParameter("password", password)
+                new SqlParameter("nome", nome),
+                new SqlParameter("senha", senha)
             };
-
-            var tabela = HelperDAO.ExecutaProcSelect("spValidarUsuario", p);
-
+            var tabela = HelperDAO.ExecutaProcSelect("spValidaUsuario", p);
             if (tabela.Rows.Count == 0)
                 return null;
-
-            return MontaModel(tabela.Rows[0]);
+            else
+                return MontaModel(tabela.Rows[0]);
         }
 
 

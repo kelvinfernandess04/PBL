@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using PBL_MVC.Models;
 using PBL_MVC.DAO;
 
 namespace PBL_MVC.Controllers
