@@ -31,6 +31,22 @@ namespace PBL_MVC.DAO
 
             return u;
         }
+        public UsuarioViewModel ValidarUsuario(string username, string password)
+        {
+            var p = new SqlParameter[]
+            {
+                new SqlParameter("username", username),
+                new SqlParameter("password", password)
+            };
+
+            var tabela = HelperDAO.ExecutaProcSelect("spValidarUsuario", p);
+
+            if (tabela.Rows.Count == 0)
+                return null;
+
+            return MontaModel(tabela.Rows[0]);
+        }
+
 
         protected override void SetTabela()
         {
