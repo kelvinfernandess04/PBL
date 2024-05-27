@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uqyGQ4KlF314L2uek3K7b4jdOKQk7YyYk6t4pvTM8h5aMh034kB1Oj2zK169CrXbBRiXsPjlbSYJPRdkxqYpiA==",
+  "dgSpecHash": "+/X5Y6Pb5lOpatdULWNfo/4YN3yJRfiRvzS79ZPRVsNcNKf8i8Kym3xGNITLfh3lzFGTUykYSu4ZlXI9rOArdA==",
   "success": true,
   "projectFilePath": "/home/kelvin/Projects/PBL/PBL-MVC/PBL-MVC.csproj",
   "expectedPackageFiles": [
@@ -12,10 +12,7 @@
     "/home/kelvin/.nuget/packages/runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "/home/kelvin/.nuget/packages/system.data.sqlclient/4.8.6/system.data.sqlclient.4.8.6.nupkg.sha512",
     "/home/kelvin/.nuget/packages/system.security.accesscontrol/4.7.0/system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "/home/kelvin/.nuget/packages/system.security.principal.windows/4.7.0/system.security.principal.windows.4.7.0.nupkg.sha512",
-    "/home/kelvin/.nuget/packages/microsoft.netcore.app.ref/7.0.18/microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
-    "/home/kelvin/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.18/microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512",
-    "/home/kelvin/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.18/microsoft.netcore.app.host.linux-x64.7.0.18.nupkg.sha512"
+    "/home/kelvin/.nuget/packages/system.security.principal.windows/4.7.0/system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

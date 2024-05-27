@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/mssql/server:2019-latest
 
 # Define a senha do SA e aceita os EULA
-ENV SA_PASSWORD=123456
+ENV SA_PASSWORD=Kelvin_2004
 ENV ACCEPT_EULA=Y
 
 # Expose the SQL Server port
