@@ -1,0 +1,37 @@
+@model PBL_MVC.Models.Root
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Temperature Data</title>
+</head>
+<body>
+    <h1>Temperature Data</h1>
+    @if (Model?.ContextResponses != null)
+    {
+        foreach (var contextResponse in Model.ContextResponses)
+        {
+            var contextElement = contextResponse.ContextElement;
+            foreach (var Attribute in contextElement.Attributes)
+            {
+                <h2>Attribute Name: @Attribute.Name</h2>
+                foreach (var value in Attribute.Values)
+                {
+                    <div>
+                        <p>ID: @value.Id</p>
+                        <p>Time: @value.RecvTime</p>
+                        <p>Attribute Name: @value.AttrName</p>
+                        <p>Attribute Type: @value.AttrType</p>
+                        <p>Attribute Value: @value.AttrValue</p>
+                    </div>
+                }
+            }
+        }
+    }
+    else
+    {
+        <p>No data available.</p>
+    }
+</body>
+</html>

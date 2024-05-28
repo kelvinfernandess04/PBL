@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "+/X5Y6Pb5lOpatdULWNfo/4YN3yJRfiRvzS79ZPRVsNcNKf8i8Kym3xGNITLfh3lzFGTUykYSu4ZlXI9rOArdA==",
+  "dgSpecHash": "CSPRqw06STvSpMA7WRrReW2xAuN7wlPVFvFbsUK+0MME4WEUCySA1ST/tikBCcB1KkOlt0/b/cg0a2iZeN7tjg==",
   "success": true,
   "projectFilePath": "/home/kelvin/Projects/PBL/PBL-MVC/PBL-MVC.csproj",
   "expectedPackageFiles": [
     "/home/kelvin/.nuget/packages/microsoft.netcore.platforms/3.1.0/microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "/home/kelvin/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "/home/kelvin/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/home/kelvin/.nuget/packages/runtime.native.system.data.sqlclient.sni/4.7.0/runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "/home/kelvin/.nuget/packages/runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "/home/kelvin/.nuget/packages/runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

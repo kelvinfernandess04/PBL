@@ -4,6 +4,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession(); // Adicionando suporte para sessão
 
+// Register TemperatureService
+builder.Services.AddTransient<PBL_MVC.Services.TemperatureService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
