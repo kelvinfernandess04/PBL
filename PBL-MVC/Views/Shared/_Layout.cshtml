@@ -39,6 +39,9 @@
                                 <span class="nav-link">Olá, @Context.Session.GetString("UserName")</span>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Temperature" asp-action="index">Temperature</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login"
                                     asp-action="Logout">Logout</a>
                             </li>
