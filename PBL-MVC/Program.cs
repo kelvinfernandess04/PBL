@@ -22,6 +22,10 @@ app.UseSession(); // Adicionando middleware de sessão antes de Authorization
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "temperature",
+    pattern: "{controller=Temperature}/{action=Index}");
+    
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
