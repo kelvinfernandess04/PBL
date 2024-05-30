@@ -5,6 +5,6 @@ namespace PBL_MVC.Models
     public class ContextElement
     {
         [JsonProperty("attributes")]
-        public List<Attributes> Attributes { get; set; }
+        public List<Attribute> Attributes { get; set; }
     }
 }

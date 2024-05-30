@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PBL_MVC.Models
 {
-    public class Attributes
+    public class Attribute
     {
         [JsonProperty("name")]
         public string Name { get; set; }
