@@ -10,17 +10,13 @@
     <h1>Temperature Data</h1>
     @if (Model?.ContextResponses != null)
     {
-        <div>
-            <img src="/Temperature/Chart" alt="Temperature Chart" />
-        </div>
-        @foreach (var contextResponse in Model.ContextResponses)
+        foreach (var contextResponse in Model.ContextResponses)
         {
             var contextElement = contextResponse.ContextElement;
-            foreach (var attribute in contextElement.Attributes)
+            foreach (var Attribute in contextElement.Attributes)
             {
-                <h2>Attribute Name: 
-                    @attribute Name</h2>
-                foreach (var value in attribute.Values)
+                <h2>Attribute Name: @Attribute.Name</h2>
+                foreach (var value in Attribute.Values)
                 {
                     <div>
                         <p>ID: @value.Id</p>
