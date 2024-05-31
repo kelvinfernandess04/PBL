@@ -1,37 +1,48 @@
-@model PBL_MVC.Models.Root
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Temperature Data</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Time', 'Temperature'],
+                @foreach (var contextResponse in Model.ContextResponses)
+                {
+                    var contextElement = contextResponse.ContextElement;
+                    foreach (var attribute in contextElement.Attributes)
+                    {
+                        foreach (var value in attribute.Values)
+                        {
+                            @: ['@value.RecvTime.ToString("HH:mm:ss")', @value.AttrValue],
+                        }
+                    }
+                }
+            ]);
+
+            var options = {
+                title: 'Temperature over Time',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function reloadPage() {
+            location.reload();
+        }
+    </script>
 </head>
 <body>
     <h1>Temperature Data</h1>
-    @if (Model?.ContextResponses != null)
-    {
-        foreach (var contextResponse in Model.ContextResponses)
-        {
-            var contextElement = contextResponse.ContextElement;
-            foreach (var Attribute in contextElement.Attributes)
-            {
-                <h2>Attribute Name: @Attribute.Name</h2>
-                foreach (var value in Attribute.Values)
-                {
-                    <div>
-                        <p>ID: @value.Id</p>
-                        <p>Time: @value.RecvTime</p>
-                        <p>Attribute Name: @value.AttrName</p>
-                        <p>Attribute Type: @value.AttrType</p>
-                        <p>Attribute Value: @value.AttrValue</p>
-                    </div>
-                }
-            }
-        }
-    }
-    else
-    {
-        <p>No data available.</p>
-    }
+    <button onclick="reloadPage()">Atualizar Gráfico</button>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
 </body>
 </html>
