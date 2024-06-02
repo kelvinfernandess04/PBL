@@ -19,8 +19,10 @@ namespace PBL_MVC.Controllers
 
             if (usuario != null)
             {
-                // Login successful, handle accordingly
-                // e.g., set session, redirect, etc.
+                HttpContext.Session.SetString("Logado", "true");
+                HttpContext.Session.SetString("UserId", usuario.Id.ToString());
+                HttpContext.Session.SetString("UserName", usuario.Nome);
+
                 return RedirectToAction("Index", "Home");
             }
             else
