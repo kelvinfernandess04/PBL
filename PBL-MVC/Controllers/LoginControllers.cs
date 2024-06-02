@@ -14,31 +14,21 @@ namespace PBL_MVC.Controllers
         [HttpPost]
         public IActionResult Index(string username, string password)
         {
-            if (ModelState.IsValid)
+            UsuarioDAO dao = new UsuarioDAO();
+            UsuarioViewModel usuario = dao.ValidarUsuario(username, password);
+
+            if (usuario != null)
             {
-                UsuarioDAO dao = new UsuarioDAO();
-                var user = dao.ValidarUsuario(username, password);
-
-                if (user != null)
-                {
-                    HttpContext.Session.SetString("Logado", "true");
-                    HttpContext.Session.SetString("UserId", user.Id.ToString());
-                    HttpContext.Session.SetString("UserName", user.Nome);
-
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Usuário ou senha inválidos.");
-                }
+                // Login successful, handle accordingly
+                // e.g., set session, redirect, etc.
+                return RedirectToAction("Index", "Home");
             }
-            return View();
-        }
-
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Login");
+            else
+            {
+                // Login failed, show error message
+                ViewBag.Error = "Nome de usuário ou senha inválidos.";
+                return View();
+            }
         }
 
         public IActionResult Register()

@@ -101,8 +101,9 @@ CREATE PROCEDURE spValidaUsuario
     @senha NVARCHAR(50)
 AS
 BEGIN
-    SELECT Id, Nome, IdEmpresa, Cargo 
-    FROM Usuarios 
+    SELECT Id, Nome, IdEmpresa, Cargo, Senha
+    FROM Usuarios
     WHERE Nome = @nome AND Senha = @senha;
 END;
 GO
+
