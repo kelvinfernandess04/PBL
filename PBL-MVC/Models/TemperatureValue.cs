@@ -3,10 +3,8 @@ using System;
 
 namespace PBL_MVC.Models
 {
-    public class TemperatureValue
+    public class TemperatureValue:PadraoViewModel
     {
-        [JsonProperty("_id")]
-        public string Id { get; set; }
 
         [JsonProperty("recvTime")]
         public DateTime RecvTime { get; set; }
