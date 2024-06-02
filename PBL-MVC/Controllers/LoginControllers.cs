@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PBL_MVC.DAO;
+using PBL_MVC.Models;
 
 namespace PBL_MVC.Controllers
 {
@@ -38,6 +39,23 @@ namespace PBL_MVC.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Login");
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(UsuarioViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                UsuarioDAO dao = new UsuarioDAO();
+                dao.InsertUsuario(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
     }
 }

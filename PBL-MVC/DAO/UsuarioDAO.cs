@@ -8,11 +8,12 @@ namespace PBL_MVC.DAO
     {
         protected override SqlParameter[] CriaParametros(UsuarioViewModel usuario)
         {
-            SqlParameter[] p = new SqlParameter[3];
+            SqlParameter[] p = new SqlParameter[4];
             p[0] = new SqlParameter("id", usuario.Id);
             p[1] = new SqlParameter("nome", usuario.Nome);
             p[2] = new SqlParameter("idEmpresa", usuario.IdEmpresa);
             p[3] = new SqlParameter("cargo", usuario.Cargo);
+            p[4] = new SqlParameter("senha", usuario.Senha);
             return p;
         }
 
@@ -23,9 +24,10 @@ namespace PBL_MVC.DAO
             u.Nome = registro["nome"].ToString();
             u.IdEmpresa = Convert.ToInt32(registro["idEmpresa"]);
             u.Cargo = registro["cargo"].ToString();
-
+            u.Senha = registro["senha"].ToString();
             return u;
         }
+
         public UsuarioViewModel ValidarUsuario(string nome, string senha)
         {
             var p = new SqlParameter[]
@@ -40,6 +42,11 @@ namespace PBL_MVC.DAO
                 return MontaModel(tabela.Rows[0]);
         }
 
+        public void InsertUsuario(UsuarioViewModel usuario)
+        {
+            var p = CriaParametros(usuario);
+            HelperDAO.ExecutaProc("spInsert_Usuarios", p);
+        }
 
         protected override void SetTabela()
         {
