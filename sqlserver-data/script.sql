@@ -6,29 +6,51 @@ GO
 USE PBL;
 GO
 
+-- Criação da tabela de empresas
+CREATE TABLE Empresas (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nome NVARCHAR(100) NOT NULL
+);
+GO
+
+-- Inserindo dados iniciais na tabela de empresas
+INSERT INTO Empresas (Nome) VALUES 
+('Empresa A'),
+('Empresa B'),
+('Empresa C'),
+('Empresa D'),
+('Empresa E'),
+('Empresa F'),
+('Empresa G'),
+('Empresa H'),
+('Empresa I'),
+('Empresa J');
+GO
+
 -- Criação da tabela de usuários
 CREATE TABLE Usuarios (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Nome NVARCHAR(100) NOT NULL,
-    IdEmpresa INT NOT NULL,
+    IdEmpresa INT NOT NULL FOREIGN KEY REFERENCES Empresas(Id),
     Cargo NVARCHAR(50) NOT NULL,
-    Senha NVARCHAR(50) NOT NULL
+    Senha NVARCHAR(50) NOT NULL,
+    Img NVARCHAR(MAX) NULL
 );
 GO
 
--- Inserindo alguns dados iniciais
-INSERT INTO Usuarios (Nome, IdEmpresa, Cargo, Senha) VALUES 
-('Kelvin Fernandes Silva', 1, 'Developer', 'senha123'),
-('William Galvonas Apuzzo Miyaura', 1, 'Developer', 'senha123'),
-('Evandro Ijanques Junior', 1, 'Developer', 'senha123'),
-('Heytor Kyoshi Sato', 1, 'Developer', 'senha123');
+-- Inserindo alguns dados iniciais na tabela de usuários
+INSERT INTO Usuarios (Nome, IdEmpresa, Cargo, Senha, Img) VALUES 
+('Kelvin Fernandes Silva', 1, 'Developer', 'senha123', NULL),
+('William Galvonas Apuzzo Miyaura', 2, 'Developer', 'senha123', NULL),
+('Evandro Ijanques Junior', 3, 'Developer', 'senha123', NULL),
+('Heytor Kyoshi Sato', 4, 'Developer', 'senha123', NULL);
 GO
 
 -- Stored procedure para listagem de usuários
 CREATE PROCEDURE spListagemUsuarios
 AS
 BEGIN
-    SELECT Id, Nome, IdEmpresa, Cargo, Senha FROM Usuarios ORDER BY Id;
+    SELECT Id, Nome, IdEmpresa, Cargo, Senha, Img FROM Usuarios ORDER BY Id;
 END;
 GO
 
@@ -37,11 +59,12 @@ CREATE PROCEDURE spInsert_Usuarios
     @nome NVARCHAR(100),
     @idEmpresa INT,
     @cargo NVARCHAR(50),
-    @senha NVARCHAR(50)
+    @senha NVARCHAR(50),
+    @img NVARCHAR(MAX)
 AS
 BEGIN
-    INSERT INTO Usuarios (Nome, IdEmpresa, Cargo, Senha)
-    VALUES (@nome, @idEmpresa, @cargo, @senha);
+    INSERT INTO Usuarios (Nome, IdEmpresa, Cargo, Senha, Img)
+    VALUES (@nome, @idEmpresa, @cargo, @senha, @img);
 END;
 GO
 
@@ -51,11 +74,12 @@ CREATE PROCEDURE spUpdate_Usuarios
     @nome NVARCHAR(100),
     @idEmpresa INT,
     @cargo NVARCHAR(50),
-    @senha NVARCHAR(50)
+    @senha NVARCHAR(50),
+    @img NVARCHAR(MAX)
 AS
 BEGIN
     UPDATE Usuarios
-    SET Nome = @nome, IdEmpresa = @idEmpresa, Cargo = @cargo, Senha = @senha
+    SET Nome = @nome, IdEmpresa = @idEmpresa, Cargo = @cargo, Senha = @senha, Img = @img
     WHERE Id = @id;
 END;
 GO
@@ -101,9 +125,8 @@ CREATE PROCEDURE spValidaUsuario
     @senha NVARCHAR(50)
 AS
 BEGIN
-    SELECT Id, Nome, IdEmpresa, Cargo, Senha
+    SELECT Id, Nome, IdEmpresa, Cargo, Senha, Img
     FROM Usuarios
     WHERE Nome = @nome AND Senha = @senha;
 END;
 GO
-

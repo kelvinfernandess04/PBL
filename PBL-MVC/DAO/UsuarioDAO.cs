@@ -1,4 +1,6 @@
 ﻿using PBL_MVC.Models;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -8,12 +10,13 @@ namespace PBL_MVC.DAO
     {
         protected override SqlParameter[] CriaParametros(UsuarioViewModel usuario)
         {
-            SqlParameter[] p = new SqlParameter[5]; // Tamanho correto do array de parâmetros
+            SqlParameter[] p = new SqlParameter[6]; // Tamanho correto do array de parâmetros
             p[0] = new SqlParameter("id", usuario.Id);
             p[1] = new SqlParameter("nome", usuario.Nome);
             p[2] = new SqlParameter("idEmpresa", usuario.IdEmpresa);
             p[3] = new SqlParameter("cargo", usuario.Cargo);
             p[4] = new SqlParameter("senha", usuario.Senha);
+            p[5] = new SqlParameter("img", usuario.Img); // Novo parâmetro para a imagem
             return p;
         }
 
@@ -24,7 +27,8 @@ namespace PBL_MVC.DAO
             u.Nome = registro["nome"].ToString();
             u.IdEmpresa = Convert.ToInt32(registro["idEmpresa"]);
             u.Cargo = registro["cargo"].ToString();
-            u.Senha = registro["senha"].ToString(); // Garantir que esta coluna existe
+            u.Senha = registro["senha"].ToString();
+            u.Img = registro["img"]?.ToString(); // Garantir que esta coluna existe
             return u;
         }
 
@@ -49,7 +53,8 @@ namespace PBL_MVC.DAO
                 new SqlParameter("nome", usuario.Nome),
                 new SqlParameter("idEmpresa", usuario.IdEmpresa),
                 new SqlParameter("cargo", usuario.Cargo),
-                new SqlParameter("senha", usuario.Senha)
+                new SqlParameter("senha", usuario.Senha),
+                new SqlParameter("img", usuario.Img) // Novo parâmetro para a imagem
             };
             HelperDAO.ExecutaProc("spInsert_Usuarios", p);
         }
@@ -59,7 +64,6 @@ namespace PBL_MVC.DAO
             HelperDAO.ExecutaProc("spUpdate_Usuarios", CriaParametros(model));
         }
 
-
         protected override void SetTabela()
         {
             Tabela = "Usuarios";
@@ -68,16 +72,13 @@ namespace PBL_MVC.DAO
 
         public override List<UsuarioViewModel> Listagem()
         {
-            // Não passando parâmetros desnecessários ao procedimento armazenado
             var tabela = HelperDAO.ExecutaProcSelect(NomeSpListagem, null); // NomeSpListagem é "spListagemUsuarios"
             List<UsuarioViewModel> lista = new List<UsuarioViewModel>();
             foreach (DataRow registro in tabela.Rows)
             {
                 lista.Add(MontaModel(registro));
             }
-
             return lista;
         }
-
     }
 }

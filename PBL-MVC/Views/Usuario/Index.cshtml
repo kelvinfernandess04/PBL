@@ -37,6 +37,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cargo)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img) <!-- Novo campo para imagem -->
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -48,7 +51,6 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            // Função para atualizar a lista de usuários com base nos filtros
             function updateList() {
                 var filterIdEmpresa = $("#filterIdEmpresa").val();
                 var filterNome = $("#filterNome").val();
@@ -68,10 +70,8 @@
                 });
             }
 
-            // Atualizar a lista quando os campos de filtro forem alterados
             $("#filterIdEmpresa, #filterNome, #filterCargo").on("input", updateList);
 
-            // Atualizar a lista quando a página for carregada
             updateList();
         });
     </script>

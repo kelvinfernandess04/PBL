@@ -13,6 +13,12 @@
             @Html.DisplayFor(modelItem => item.Cargo)
         </td>
         <td>
+            @if (!string.IsNullOrEmpty(item.Img))
+            {
+                <img src="data:image/png;base64,@item.Img" alt="User Image" width="50" height="50" />
+            }
+        </td>
+        <td>
             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Editar</a> |
             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>
         </td>
