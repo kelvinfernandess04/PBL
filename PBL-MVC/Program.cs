@@ -10,14 +10,18 @@ builder.Services.AddTransient<PBL_MVC.Services.TemperatureService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
+// if (app.Environment.IsDevelopment())
+// {
+    app.UseDeveloperExceptionPage();
+// }
+// else
+// {
+//     app.UseExceptionHandler("/Home/Error");
+//     app.UseHsts();
+// }
 app.UseStaticFiles();
-
+app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseSession(); // Adicionando middleware de sessão antes de Authorization
 app.UseAuthorization();
 

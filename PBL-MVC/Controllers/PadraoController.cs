@@ -17,7 +17,9 @@ namespace PBL_MVC.Controllers
         {
             try
             {
+                Console.WriteLine("Antes de chamar DAO.Listagem");
                 var lista = DAO.Listagem();
+                Console.WriteLine("Depois de chamar DAO.Listagem");
                 return View(NomeViewIndex, lista);
             }
             catch (Exception erro)

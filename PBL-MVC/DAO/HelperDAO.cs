@@ -85,18 +85,34 @@ namespace PBL_MVC.DAO
 
         public static DataTable ExecutaProcSelect(string nomeProc, SqlParameter[] parametros)
         {
-            using (SqlConnection conexao = ConexaoBD.GetConexao())
-            {
-                using (SqlDataAdapter adapter = new SqlDataAdapter(nomeProc, conexao))
+            try{
+            
+                using (SqlConnection conexao = ConexaoBD.GetConexao())
                 {
-                    if (parametros != null)
-                        adapter.SelectCommand.Parameters.AddRange(parametros);
-                    adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                    DataTable tabela = new DataTable();
-                    adapter.Fill(tabela);
-                    return tabela;
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(nomeProc, conexao))
+                    {
+                        if (parametros != null)
+                            adapter.SelectCommand.Parameters.AddRange(parametros);
+
+                        adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                        DataTable tabela = new DataTable();
+                        Console.WriteLine(adapter);
+                        adapter.Fill(tabela);
+                        Console.WriteLine("6");
+                        return tabela;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                // Registra a exceção no console ou em outro lugar apropriado
+                Console.WriteLine($"Erro ao executar o procedimento armazenado {nomeProc}: {ex.Message}");
+                throw; // Lança a exceção para que ela possa ser tratada em um nível superior, se necessário
+            }
+            finally{
+                conexao.Close();
+            }
         }
+
     }
 }

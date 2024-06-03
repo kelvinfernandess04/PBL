@@ -59,5 +59,7 @@ namespace PBL_MVC.DAO
             Tabela = "Usuarios";
             NomeSpListagem = "spListagemUsuarios";
         }
+
+        
     }
 }

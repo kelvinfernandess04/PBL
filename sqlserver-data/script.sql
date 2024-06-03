@@ -28,7 +28,7 @@ GO
 CREATE PROCEDURE spListagemUsuarios
 AS
 BEGIN
-    SELECT Id, Nome, IdEmpresa, Cargo FROM Usuarios ORDER BY Id;
+    SELECT Id, Nome, IdEmpresa, Cargo, Senha FROM Usuarios ORDER BY Id;
 END;
 GO
 

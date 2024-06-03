@@ -12,7 +12,7 @@ namespace PBL_MVC.DAO
         }
 
         protected string Tabela { get; set; }
-        protected string NomeSpListagem { get; set; } = "spListagem";
+        protected string NomeSpListagem { get; set; } = "spListagemUsuarios";
         protected abstract SqlParameter[] CriaParametros(T model);
         protected abstract T MontaModel(DataRow registro);
         protected abstract void SetTabela();
@@ -65,17 +65,24 @@ namespace PBL_MVC.DAO
 
         public virtual List<T> Listagem()
         {
+            Console.WriteLine("Entrou em Listagem");
             var p = new SqlParameter[]
             {
                 new SqlParameter("tabela", Tabela),
                 new SqlParameter("Ordem", "1") // 1 é o primeiro campo da tabela
             };
+            Console.WriteLine("chamando helper");
             var tabela = HelperDAO.ExecutaProcSelect(NomeSpListagem, p);
+            Console.WriteLine($"Número de linhas retornadas: {tabela.Rows.Count}");
             List<T> lista = new List<T>();
             foreach (DataRow registro in tabela.Rows)
+            {
+                Console.WriteLine($"Processando registro: {registro}");
                 lista.Add(MontaModel(registro));
+            }
 
             return lista;
         }
+
     }
 }
