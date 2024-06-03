@@ -33,24 +33,45 @@ public class UsuarioController : PadraoController<UsuarioViewModel>
         base.PreencheDadosParaView(operacao, model);
     }
 
+    public IActionResult Filter(int? idEmpresa, string nome, string cargo)
+    {
+        var filteredList = DAO.Listagem()
+            .Where(u =>
+                (idEmpresa == null || u.IdEmpresa == idEmpresa) &&
+                (string.IsNullOrEmpty(nome) || u.Nome.Contains(nome)) &&
+                (string.IsNullOrEmpty(cargo) || u.Cargo.Contains(cargo))
+            )
+            .ToList();
+
+        return PartialView("_UserListPartial", filteredList);
+    }
+
+
     public override IActionResult Save(UsuarioViewModel model, string operacao)
     {
+
+        Console.WriteLine("Foi chamado");
         try
         {
             if (ModelState.IsValid)
             {
+                Console.Write("Valido");
                 if (operacao == "I")
                 {
+
+                    Console.WriteLine("I");
                     DAO.Insert(model);
                 }
                 else if (operacao == "A")
                 {
+                    Console.WriteLine("A");
                     DAO.Update(model);
                 }
                 return RedirectToAction("Index");
             }
             else
             {
+                Console.WriteLine("invalida");
                 ViewBag.Operacao = operacao;
                 PreencheDadosParaView(operacao, model);
                 return View("Form", model);

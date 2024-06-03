@@ -9,6 +9,22 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Criar Novo Usuário</a>
 </p>
+
+<div class="form-group">
+    <label for="filterIdEmpresa">Filtrar por Id Empresa:</label>
+    <input type="text" class="form-control" id="filterIdEmpresa">
+</div>
+
+<div class="form-group">
+    <label for="filterNome">Filtrar por Nome:</label>
+    <input type="text" class="form-control" id="filterNome">
+</div>
+
+<div class="form-group">
+    <label for="filterCargo">Filtrar por Cargo:</label>
+    <input type="text" class="form-control" id="filterCargo">
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -24,23 +40,39 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdEmpresa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cargo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>
-            </td>
-        </tr>
-}
+    <tbody id="userListBody">
+        <!-- Os resultados da filtragem serão exibidos aqui -->
     </tbody>
 </table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Função para atualizar a lista de usuários com base nos filtros
+            function updateList() {
+                var filterIdEmpresa = $("#filterIdEmpresa").val();
+                var filterNome = $("#filterNome").val();
+                var filterCargo = $("#filterCargo").val();
+
+                $.ajax({
+                    url: "@Url.Action("Filter", "Usuario")",
+                    type: "GET",
+                    data: {
+                        idEmpresa: filterIdEmpresa,
+                        nome: filterNome,
+                        cargo: filterCargo
+                    },
+                    success: function (result) {
+                        $("#userListBody").html(result);
+                    }
+                });
+            }
+
+            // Atualizar a lista quando os campos de filtro forem alterados
+            $("#filterIdEmpresa, #filterNome, #filterCargo").on("input", updateList);
+
+            // Atualizar a lista quando a página for carregada
+            updateList();
+        });
+    </script>
+}

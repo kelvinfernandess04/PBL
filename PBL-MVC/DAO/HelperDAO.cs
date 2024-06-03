@@ -47,9 +47,7 @@ namespace PBL_MVC.DAO
                 return valor;
         }
 
-        public static int ExecutaProc(string nomeProc,
-                                      SqlParameter[] parametros,
-                                      bool consultaUltimoIdentity = false)
+        public static int ExecutaProc(string nomeProc, SqlParameter[] parametros, bool consultaUltimoIdentity = false)
         {
             using (SqlConnection conexao = ConexaoBD.GetConexao())
             {
@@ -96,9 +94,7 @@ namespace PBL_MVC.DAO
 
                         adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
                         DataTable tabela = new DataTable();
-                        Console.WriteLine(adapter);
                         adapter.Fill(tabela);
-                        Console.WriteLine("6");
                         return tabela;
                     }
                 }
