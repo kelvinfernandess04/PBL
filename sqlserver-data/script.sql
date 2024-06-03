@@ -38,14 +38,6 @@ CREATE TABLE Usuarios (
 );
 GO
 
--- Inserindo alguns dados iniciais na tabela de usuários
-INSERT INTO Usuarios (Nome, IdEmpresa, Cargo, Senha, Img) VALUES 
-('Kelvin Fernandes Silva', 1, 'Developer', 'senha123', NULL),
-('William Galvonas Apuzzo Miyaura', 2, 'Developer', 'senha123', NULL),
-('Evandro Ijanques Junior', 3, 'Developer', 'senha123', NULL),
-('Heytor Kyoshi Sato', 4, 'Developer', 'senha123', NULL);
-GO
-
 -- Stored procedure para listagem de usuários
 CREATE PROCEDURE spListagemUsuarios
 AS

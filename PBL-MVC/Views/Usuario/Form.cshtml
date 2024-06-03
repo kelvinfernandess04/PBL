@@ -9,7 +9,7 @@
 @if (ViewBag.Operacao == "I")
 {
     <h2>Adicionar Usuário</h2>
-    <form asp-controller="Usuario" asp-action="Save" method="post">
+    <form asp-controller="Usuario" asp-action="Save" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label asp-for="Nome"></label>
             <input asp-for="Nome" class="form-control" />
@@ -31,8 +31,9 @@
             <span asp-validation-for="Senha" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Img">Imagem (base64)</label>
-            <input asp-for="Img" class="form-control" />
+            <label asp-for="Img">Imagem</label>
+            <input type="file" class="form-control" id="ImgFile" onchange="convertImageToBase64(this)" />
+            <input type="hidden" asp-for="Img" />
             <span asp-validation-for="Img" class="text-danger"></span>
         </div>
         <input type="hidden" name="operacao" value="@ViewBag.Operacao" />
@@ -42,10 +43,10 @@
 else if (ViewBag.Operacao == "A")
 {
     <h2>Editar Usuário</h2>
-    <form asp-controller="Usuario" asp-action="Save" method="post">
+    <form asp-controller="Usuario" asp-action="Save" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label asp-for="Id"></label>
-            <input asp-for="Id" class="form-control" readonly/>
+            <input asp-for="Id" class="form-control" readonly />
             <span asp-validation-for="Id" class="text-danger"></span>
         </div>
         <div class="form-group">
@@ -69,11 +70,26 @@ else if (ViewBag.Operacao == "A")
             <span asp-validation-for="Senha" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Img">Imagem (base64)</label>
-            <input asp-for="Img" class="form-control" />
+            <label asp-for="Img">Imagem</label>
+            <input type="file" class="form-control" id="ImgFile" onchange="convertImageToBase64(this)" />
+            <input type="hidden" asp-for="Img" />
             <span asp-validation-for="Img" class="text-danger"></span>
         </div>
         <input type="hidden" name="operacao" value="@ViewBag.Operacao" />
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
+}
+
+@section Scripts {
+    <script>
+        function convertImageToBase64(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('Img').value = e.target.result.split(',')[1];
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 }

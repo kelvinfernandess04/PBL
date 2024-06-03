@@ -10,7 +10,7 @@ namespace PBL_MVC.DAO
     {
         protected override SqlParameter[] CriaParametros(UsuarioViewModel usuario)
         {
-            SqlParameter[] p = new SqlParameter[6]; // Tamanho correto do array de parâmetros
+            SqlParameter[] p = new SqlParameter[6];
             p[0] = new SqlParameter("id", usuario.Id);
             p[1] = new SqlParameter("nome", usuario.Nome);
             p[2] = new SqlParameter("idEmpresa", usuario.IdEmpresa);
@@ -72,7 +72,7 @@ namespace PBL_MVC.DAO
 
         public override List<UsuarioViewModel> Listagem()
         {
-            var tabela = HelperDAO.ExecutaProcSelect(NomeSpListagem, null); // NomeSpListagem é "spListagemUsuarios"
+            var tabela = HelperDAO.ExecutaProcSelect(NomeSpListagem, null);
             List<UsuarioViewModel> lista = new List<UsuarioViewModel>();
             foreach (DataRow registro in tabela.Rows)
             {

@@ -7,7 +7,7 @@
 
 <h2>Register</h2>
 
-<form asp-action="Register" method="post">
+<form asp-action="Register" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="Nome">Nome</label>
         <input type="text" class="form-control" id="Nome" name="Nome" required />
@@ -25,8 +25,9 @@
         <input type="password" class="form-control" id="Senha" name="Senha" required />
     </div>
     <div class="form-group">
-        <label for="Img">Imagem (base64)</label>
-        <input type="text" class="form-control" id="Img" name="Img" />
+        <label for="Img">Imagem</label>
+        <input type="file" class="form-control" id="ImgFile" onchange="convertImageToBase64(this)" />
+        <input type="hidden" id="Img" name="Img" />
     </div>
     <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
@@ -36,4 +37,18 @@
     <div class="alert alert-danger">
         @ViewBag.Error
     </div>
+}
+
+@section Scripts {
+    <script>
+        function convertImageToBase64(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('Img').value = e.target.result.split(',')[1];
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 }
