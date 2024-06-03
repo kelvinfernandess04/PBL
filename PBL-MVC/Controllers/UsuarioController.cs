@@ -50,7 +50,6 @@ public class UsuarioController : PadraoController<UsuarioViewModel>
     public override IActionResult Save(UsuarioViewModel model, string operacao)
     {
 
-        Console.WriteLine("Foi chamado");
         try
         {
             if (ModelState.IsValid)
@@ -58,20 +57,23 @@ public class UsuarioController : PadraoController<UsuarioViewModel>
                 Console.Write("Valido");
                 if (operacao == "I")
                 {
-
                     Console.WriteLine("I");
-                    DAO.Insert(model);
+                    var usuarioDAO = new UsuarioDAO(); // Criar uma instância de UsuarioDAO
+                    usuarioDAO.InsertUsuario(model); // Chamar o método InsertUsuario na instância criada
                 }
                 else if (operacao == "A")
                 {
+
                     Console.WriteLine("A");
-                    DAO.Update(model);
+                    var usuarioDAO = new UsuarioDAO(); // Criar uma instância de UsuarioDAO
+                    usuarioDAO.UpdateUsuarios(model);
                 }
                 return RedirectToAction("Index");
             }
             else
             {
-                Console.WriteLine("invalida");
+                Console.WriteLine(model.Nome + " " + model.Cargo + " " + model.IdEmpresa + " " + model.Id + " " + model.Senha);
+                Console.WriteLine(operacao);
                 ViewBag.Operacao = operacao;
                 PreencheDadosParaView(operacao, model);
                 return View("Form", model);
@@ -79,7 +81,9 @@ public class UsuarioController : PadraoController<UsuarioViewModel>
         }
         catch (Exception erro)
         {
+            Console.WriteLine($"Error: {erro.Message}");
             return View("Error", new ErrorViewModel(erro.ToString()));
         }
     }
+
 }

@@ -54,6 +54,20 @@ namespace PBL_MVC.DAO
             HelperDAO.ExecutaProc("spInsert_Usuarios", p);
         }
 
+        public void UpdateUsuarios(UsuarioViewModel usuario)
+        {
+            Console.WriteLine("Chamou o update");
+            var p = new SqlParameter[]
+            {
+                new SqlParameter("id", usuario.Id),
+                new SqlParameter("nome", usuario.Nome),
+                new SqlParameter("idEmpresa", usuario.IdEmpresa),
+                new SqlParameter("cargo", usuario.Cargo),
+                new SqlParameter("senha", usuario.Senha)
+            };
+            HelperDAO.ExecutaProc("spUpdate_Usuarios", p, true);
+        }
+
         protected override void SetTabela()
         {
             Tabela = "Usuarios";

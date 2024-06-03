@@ -49,21 +49,28 @@ namespace PBL_MVC.DAO
 
         public static int ExecutaProc(string nomeProc, SqlParameter[] parametros, bool consultaUltimoIdentity = false)
         {
+            Console.WriteLine("entrou no execc");
             using (SqlConnection conexao = ConexaoBD.GetConexao())
             {
+            Console.WriteLine("conexao");
                 using (SqlCommand comando = new SqlCommand(nomeProc, conexao))
                 {
+            Console.WriteLine("comando");
                     comando.CommandType = CommandType.StoredProcedure;
                     if (parametros != null)
                         comando.Parameters.AddRange(parametros);
                     comando.ExecuteNonQuery();
                     if (consultaUltimoIdentity)
                     {
+
+            Console.WriteLine("if");
                         string sql = "select isnull(@@IDENTITY,0)";
                         comando.CommandType = CommandType.Text;
                         comando.CommandText = sql;
                         int pedidoId = Convert.ToInt32(comando.ExecuteScalar());
                         conexao.Close();
+
+            Console.WriteLine("close");
                         return pedidoId;
                     }
                     else
