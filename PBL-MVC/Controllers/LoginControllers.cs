@@ -10,6 +10,12 @@ namespace PBL_MVC.Controllers
         {
             return View();
         }
+         public IActionResult Logout()
+        {
+            // Limpa todas as chaves da sessão
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpPost]
         public IActionResult Index(string username, string password)

@@ -66,7 +66,7 @@ public class UsuarioController : PadraoController<UsuarioViewModel>
 
                     Console.WriteLine("A");
                     var usuarioDAO = new UsuarioDAO(); // Criar uma instância de UsuarioDAO
-                    usuarioDAO.UpdateUsuarios(model);
+                    usuarioDAO.Update(model);
                 }
                 return RedirectToAction("Index");
             }
