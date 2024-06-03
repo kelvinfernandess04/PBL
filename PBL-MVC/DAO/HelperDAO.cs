@@ -109,9 +109,9 @@ namespace PBL_MVC.DAO
                 Console.WriteLine($"Erro ao executar o procedimento armazenado {nomeProc}: {ex.Message}");
                 throw; // Lança a exceção para que ela possa ser tratada em um nível superior, se necessário
             }
-            finally{
-                conexao.Close();
-            }
+            // finally{
+            //     conexao.Close();
+            // }
         }
 
     }

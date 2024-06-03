@@ -79,3 +79,80 @@ body {
   font-size: 0.9em;
   color: #777;
 }
+
+body {
+  background-color: #fafbf6;
+  color: #0f0f1b;
+}
+
+.btn-primary {
+  background-color: #565a75;
+  border-color: #565a75;
+}
+
+.btn-primary:hover {
+  background-color: #0f0f1b;
+  border-color: #0f0f1b;
+}
+
+.btn-secondary {
+  background-color: #c6b7be;
+  border-color: #c6b7be;
+}
+
+.btn-secondary:hover {
+  background-color: #565a75;
+  border-color: #565a75;
+}
+
+.btn-info, .btn-danger {
+  border-color: #0f0f1b;
+}
+
+.btn-info {
+  background-color: #c6b7be;
+}
+
+.btn-info:hover {
+  background-color: #565a75;
+}
+
+.btn-danger {
+  background-color: #0f0f1b;
+}
+
+.btn-danger:hover {
+  background-color: #565a75;
+}
+
+table {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #565a75;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #c6b7be;
+}
+
+td {
+  border-top: 1px solid #565a75;
+}
+
+.form-group label {
+  color: #565a75;
+}
+
+.form-control {
+  background-color: #ffffff;
+  border: 1px solid #565a75;
+}
+
+.text-danger {
+  color: #c6b7be;
+}

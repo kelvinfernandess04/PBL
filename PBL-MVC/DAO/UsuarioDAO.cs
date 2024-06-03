@@ -60,6 +60,18 @@ namespace PBL_MVC.DAO
             NomeSpListagem = "spListagemUsuarios";
         }
 
-        
+        public override List<UsuarioViewModel> Listagem()
+        {
+            // Não passando parâmetros desnecessários ao procedimento armazenado
+            var tabela = HelperDAO.ExecutaProcSelect(NomeSpListagem, null); // NomeSpListagem é "spListagemUsuarios"
+            List<UsuarioViewModel> lista = new List<UsuarioViewModel>();
+            foreach (DataRow registro in tabela.Rows)
+            {
+                lista.Add(MontaModel(registro));
+            }
+
+            return lista;
+        }
+
     }
 }

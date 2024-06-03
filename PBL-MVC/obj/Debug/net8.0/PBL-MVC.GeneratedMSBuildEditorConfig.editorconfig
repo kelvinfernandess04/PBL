@@ -50,20 +50,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVtcGVyYXR1cmUvaW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/kelvin/Projects/PBL/PBL-MVC/Views/Usuario/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXN1YXJpby9DcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/kelvin/Projects/PBL/PBL-MVC/Views/Usuario/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXN1YXJpby9EZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/kelvin/Projects/PBL/PBL-MVC/Views/Usuario/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXN1YXJpby9EZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/kelvin/Projects/PBL/PBL-MVC/Views/Usuario/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXN1YXJpby9FZGl0LmNzaHRtbA==
+[/home/kelvin/Projects/PBL/PBL-MVC/Views/Usuario/Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXN1YXJpby9Gb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/kelvin/Projects/PBL/PBL-MVC/Views/Usuario/Index.cshtml]

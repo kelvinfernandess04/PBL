@@ -1,35 +1,46 @@
 @model IEnumerable<PBL_MVC.Models.UsuarioViewModel>
 
+@{
+    ViewData["Title"] = "Lista de Usuários";
+}
+
 <h1>Lista de Usuários</h1>
 
 <p>
     <a asp-action="Create" class="btn btn-primary">Criar Novo Usuário</a>
 </p>
-
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>ID Empresa</th>
-            <th>Cargo</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model)
-    {
+@foreach (var item in Model) {
         <tr>
-            <td>@item.Id</td>
-            <td>@item.Nome</td>
-            <td>@item.IdEmpresa</td>
-            <td>@item.Cargo</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalhes</a>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Editar</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>
             </td>
         </tr>
-    }
+}
     </tbody>
 </table>
