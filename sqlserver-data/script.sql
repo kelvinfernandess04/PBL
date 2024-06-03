@@ -60,6 +60,8 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE spNomeEmpresa
+
 -- Stored procedure para atualização de usuário
 CREATE PROCEDURE spUpdate_Usuarios
     @id INT,

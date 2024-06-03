@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PBL-MVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d09f394e79c2c86f50ae0f24b4118cc8c35b433d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48fcfad3a7d2fc3c166572fa60fad57fbb2802dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("PBL-MVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PBL-MVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
