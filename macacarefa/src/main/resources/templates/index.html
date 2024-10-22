@@ -1,77 +1,72 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Macacarefa - Login</title>
-        <link rel="stylesheet" href="styles.css">
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macacarefa - Index</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #141414;
-                color: #ffcc00;
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('../imagens/bananas_background.png'); /* Caminho relativo correto */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffcc00;
+        }
 
-            .login-container {
-                text-align: center;
-                background-color: #141414;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            }
+        .login-container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
 
-            .title {
-                font-size: 48px;
-                font-weight: bold;
-                margin-bottom: 40px;
-            }
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
 
-            .button-container {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-            }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-            .login-button, .register-button {
-                background-color: transparent;
-                border: 2px solid #ffcc00;
-                border-radius: 10px;
-                padding: 10px 20px;
-                font-size: 18px;
-                color: #ffcc00;
-                cursor: pointer;
-                transition: background-color 0.3s, color 0.3s;
-            }
+        .login-button, .register-button {
+            background-color: transparent;
+            border: 2px solid #ffcc00;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #ffcc00;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-            .login-button:hover, .register-button:hover {
-                background-color: #ffcc00;
-                color: #141414;
-            }
-
-        </style>
-    </head>
-    <body>
-        <div class="login-container">
-            <h1 class="title">Macacarefa</h1>
-            <div class="button-container">
-                <a href="login.html"><button class="login-button">Login</button></a>
-                <a href="cadastro.html"><button class="register-button">Cadastrar</button></a>
-            </div>
+        .login-button:hover, .register-button:hover {
+            background-color: #ffcc00;
+            color: #141414;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="title">Macacarefa</h1>
+        <div class="button-container">
+            <a href="login.html"><button class="login-button">Login</button></a>
+            <a href="cadastro.html"><button class="register-button">Cadastrar</button></a>
         </div>
-    </body>
+    </div>
+</body>
 </html>
-
