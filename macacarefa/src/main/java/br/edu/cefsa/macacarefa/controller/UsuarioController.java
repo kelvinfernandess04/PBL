@@ -1,0 +1,44 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package br.edu.cefsa.macacarefa.controller;
+
+import br.edu.cefsa.macacarefa.model.Usuario;
+import br.edu.cefsa.macacarefa.service.UsuarioService;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ *
+ * @author kelvi
+ */
+@Controller
+@RequestMapping("/hotelaria-fesa/usuario")
+public class UsuarioController {
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @GetMapping("/listar")
+    public String listar(ModelMap model) {
+        List<Usuario> padroes = usuarioService.findAll();
+
+        List<Usuario> sortedPadroes = padroes.stream()
+                .sorted((usuario1, usuario2)
+                        -> usuario1.getNome().compareTo(usuario2.getNome()))
+                .collect(Collectors.toList());
+        model.addAttribute("padroes", sortedPadroes);
+        return "/usuario/listar";
+    }
+
+    @GetMapping("/novo")
+    public String inserir(Usuario usuario) {
+        return "/usuario/inserir";
+    }
+}

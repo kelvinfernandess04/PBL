@@ -1,13 +1,13 @@
-package br.com.edu.cefsa.PBL;
+package br.edu.cefsa.macacarefa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PblApplication {
+public class MacacarefaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PblApplication.class, args);
+		SpringApplication.run(MacacarefaApplication.class, args);
 	}
 
 }
