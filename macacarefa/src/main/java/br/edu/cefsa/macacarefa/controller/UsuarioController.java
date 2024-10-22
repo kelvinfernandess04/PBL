@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- *
+ *C:\Users\kelvi\OneDrive\Documentos\GitHub\PBL\macacarefa\src\main\resources\application.properties
  * @author kelvi
  */
 @Controller
-@RequestMapping("/hotelaria-fesa/usuario")
+@RequestMapping("/macacarefa/usuario")
 public class UsuarioController {
 
     @Autowired
