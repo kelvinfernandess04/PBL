@@ -30,5 +30,9 @@ public class UsuarioService implements UserDetailsService {
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
+
+    public boolean existsByNomeOrEmail(String username, String email) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
 

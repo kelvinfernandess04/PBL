@@ -38,7 +38,14 @@ public class AuthController {
 
     @PostMapping("/cadastro")
     public String cadastroUser(Usuario usuario, Model model) {
+        // Adiciona validação para evitar que dois usuários tenham o mesmo nome ou email
+        if (usuarioService.existsByNomeOrEmail(usuario.getUsername(), usuario.getEmail())) {
+            model.addAttribute("erro", "Nome ou email já cadastrado");
+            return "cadastro"; // Volta para a página de cadastro com erro
+        }
+
         usuarioService.save(usuario); // Salva o usuário com senha criptografada
         return "redirect:/login"; // Redireciona para login após registro
     }
+
 }

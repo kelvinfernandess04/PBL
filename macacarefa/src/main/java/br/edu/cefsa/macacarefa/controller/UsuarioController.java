@@ -32,7 +32,7 @@ public class UsuarioController {
 
         List<Usuario> sortedPadroes = padroes.stream()
                 .sorted((usuario1, usuario2)
-                        -> usuario1.getNome().compareTo(usuario2.getNome()))
+                        -> usuario1.getUsername().compareTo(usuario2.getUsername()))
                 .collect(Collectors.toList());
         model.addAttribute("padroes", sortedPadroes);
         return "/usuario/listar";
