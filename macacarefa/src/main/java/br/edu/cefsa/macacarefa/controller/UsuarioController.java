@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- *C:\Users\kelvi\OneDrive\Documentos\GitHub\PBL\macacarefa\src\main\resources\application.properties
+ * C:\Users\kelvi\OneDrive\Documentos\GitHub\PBL\macacarefa\src\main\resources\application.properties
+ *
  * @author kelvi
  */
 @Controller
@@ -38,7 +39,9 @@ public class UsuarioController {
     }
 
     @GetMapping("/novo")
-    public String inserir(Usuario usuario) {
+    public String inserir(ModelMap model) {
+        model.addAttribute("usuario", new Usuario()); // Adiciona um objeto vazio para o formulário de criação
         return "/usuario/inserir";
     }
+
 }

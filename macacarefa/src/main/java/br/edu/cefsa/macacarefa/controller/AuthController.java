@@ -3,6 +3,7 @@ package br.edu.cefsa.macacarefa.controller;
 import br.edu.cefsa.macacarefa.model.Usuario;
 import br.edu.cefsa.macacarefa.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +20,24 @@ public class AuthController {
         return "login"; // Página de login
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "register"; // Página de registro
+    @GetMapping("/index")
+    public String index() {
+        return "index"; // Página de login
     }
 
-    @PostMapping("/register")
-    public String registerUser(Usuario usuario, Model model) {
+    @GetMapping("/home")
+    public String loginSuccess(Authentication authentication) {
+        // Você pode adicionar lógica adicional aqui, se necessário
+        return "home"; // Nome da página HTML criada
+    }
+
+    @GetMapping("/cadastro")
+    public String cadastro() {
+        return "cadastro"; // Página de registro
+    }
+
+    @PostMapping("/cadastro")
+    public String cadastroUser(Usuario usuario, Model model) {
         usuarioService.save(usuario); // Salva o usuário com senha criptografada
         return "redirect:/login"; // Redireciona para login após registro
     }

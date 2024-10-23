@@ -13,7 +13,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-image: url('../imagens/bananas_background.png'); /* Caminho relativo correto */
+            background-image: url('/imagens/bananas_background.png'); /* Caminho relativo correto */
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -43,7 +43,7 @@
             gap: 20px;
         }
 
-        .login-button, .register-button {
+        .login-button, .cadastro-button {
             background-color: transparent;
             border: 2px solid #ffcc00;
             border-radius: 10px;
@@ -54,7 +54,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .login-button:hover, .register-button:hover {
+        .login-button:hover, .cadastro-button:hover {
             background-color: #ffcc00;
             color: #141414;
         }
@@ -64,8 +64,8 @@
     <div class="login-container">
         <h1 class="title">Macacarefa</h1>
         <div class="button-container">
-            <a href="login.html"><button class="login-button">Login</button></a>
-            <a href="cadastro.html"><button class="register-button">Cadastrar-se</button></a>
+            <a href="login"><button class="login-button">Login</button></a>
+            <a href="cadastro"><button class="cadastro-button">Cadastrar-se</button></a>
         </div>
     </div>
 </body>
