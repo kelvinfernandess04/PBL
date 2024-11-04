@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Macacarefa - Cadastro</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('../imagens/cadastro_background'); /* Caminho relativo correto */
+                background-size: cover;
+                background-position: center;
+                color: #ffcc00;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .cadastro-container {
+                text-align: center;
+                background-color: #141414;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            }
+
+            .title {
+                font-size: 48px;
+                font-weight: bold;
+                margin-bottom: 40px;
+            }
+
+            .cadastro-button, .back-button {
+                background-color: transparent;
+                border: 2px solid #ffcc00;
+                border-radius: 10px;
+                padding: 10px 20px;
+                font-size: 18px;
+                color: #ffcc00;
+                cursor: pointer;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            .cadastro-button:hover, .back-button:hover {
+                background-color: #ffcc00;
+                color: #141414;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+
+            input {
+                padding: 10px;
+                border: 2px solid #ffcc00;
+                border-radius: 5px;
+                background-color: #141414;
+                color: #ffcc00;
+            }
+
+            input::placeholder {
+                color: #ffcc00;
+            }
+
+            input:focus {
+                outline: none;
+                border-color: #ffcc00;
+            }
+
+            /* Posiciona o botão Voltar no canto superior esquerdo */
+            .back-button {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="index"><button class="back-button">Voltar</button></a>
+        <div class="cadastro-container">
+            <h1 class="title">Macacadastro</h1>
+            <form class="cadastro-form" method="post" action="/cadastro">
+                <input type="text" name="nome" placeholder="Nome" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="senha" placeholder="Senha" required>
+                <button class="cadastro-button" type="submit">Cadastrar</button>
+            </form>
+
+        </div>
+    </body>
+</html>

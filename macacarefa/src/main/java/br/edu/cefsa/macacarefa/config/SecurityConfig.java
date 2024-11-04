@@ -13,26 +13,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login", "/register").permitAll() // Permite login e registro sem autenticação
-                .anyRequest().authenticated() // Qualquer outra URL requer login
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/login", "/cadastro", "/index", "/home").permitAll()
+                .anyRequest().authenticated()
             )
             .formLogin(form -> form
-                .loginPage("/login") // Página de login personalizada
-                .defaultSuccessUrl("/home", true) // Página redirecionada após login bem-sucedido
-                .permitAll()
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/home", true)
             )
-            .logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout") // Redireciona após logout
-                .permitAll()
-            );
-        
+            .logout(logout -> logout.permitAll());
+
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Usar criptografia para senhas
+        return new BCryptPasswordEncoder();
     }
 }
