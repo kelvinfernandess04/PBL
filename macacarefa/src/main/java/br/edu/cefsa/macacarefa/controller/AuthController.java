@@ -1,51 +1,43 @@
 package br.edu.cefsa.macacarefa.controller;
 
-import br.edu.cefsa.macacarefa.model.Usuario;
-import br.edu.cefsa.macacarefa.service.UsuarioService;
+import br.edu.cefsa.macacarefa.model.Ape;
+import br.edu.cefsa.macacarefa.service.ApeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.stereotype.Controller;
 
 @Controller
 public class AuthController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private ApeService apeService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public String login() {
-        return "login"; // Página de login
-    }
-
-    @GetMapping("/index")
-    public String index() {
-        return "index"; // Página de login
-    }
-
-    @GetMapping("/home")
-    public String loginSuccess(Authentication authentication) {
-        // Você pode adicionar lógica adicional aqui, se necessário
-        return "home"; // Nome da página HTML criada
+        return "login";
     }
 
     @GetMapping("/cadastro")
-    public String cadastro() {
-        return "cadastro"; // Página de registro
+    public String cadastro(Model model) {
+        model.addAttribute("usuario", new Ape());
+        return "cadastro";
     }
 
     @PostMapping("/cadastro")
-    public String cadastroUser(Usuario usuario, Model model) {
-        // Adiciona validação para evitar que dois usuários tenham o mesmo nome ou email
-        if (usuarioService.existsByNomeOrEmail(usuario.getUsername(), usuario.getEmail())) {
-            model.addAttribute("erro", "Nome ou email já cadastrado");
-            return "cadastro"; // Volta para a página de cadastro com erro
-        }
-
-        usuarioService.save(usuario); // Salva o usuário com senha criptografada
-        return "redirect:/login"; // Redireciona para login após registro
+    public String cadastrar(Ape usuario) {
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        apeService.saveUser(usuario);
+        return "redirect:/login";
     }
 
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
 }
