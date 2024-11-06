@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,13 +89,13 @@
         <a href="index"><button class="back-button">Voltar</button></a>
         <div class="cadastro-container">
             <h1 class="title">Macacadastro</h1>
-            <form class="cadastro-form" method="post" action="/cadastro">
-                <input type="text" name="nome" placeholder="Nome" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="senha" placeholder="Senha" required>
+            <form th:action="@{/cadastro}" th:object="${ape}" method="post">
+                <input type="text" th:field="*{name}" placeholder="Name" required>
+                <input type="email" th:field="*{email}" placeholder="Email" required>
+                <input type="password" th:field="*{password}" placeholder="Senha" required>
                 <button class="cadastro-button" type="submit">Cadastrar</button>
             </form>
-
         </div>
     </body>
+
 </html>

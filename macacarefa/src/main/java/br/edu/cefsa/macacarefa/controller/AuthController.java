@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class AuthController {
@@ -23,17 +24,28 @@ public class AuthController {
         return "login";
     }
 
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+    
+    @GetMapping("/h2-console")
+    public String h2() {
+        return "h2-console";
+    }
     @GetMapping("/cadastro")
     public String cadastro(Model model) {
-        model.addAttribute("usuario", new Ape());
+        model.addAttribute("ape", new Ape());
         return "cadastro";
     }
 
     @PostMapping("/cadastro")
-    public String cadastrar(Ape usuario) {
+    public String cadastrar(@ModelAttribute("ape") Ape usuario) {
+        System.out.printf("arrombado" + usuario.getEmail());
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         apeService.saveUser(usuario);
-        return "redirect:/login";
+        System.out.printf("passou");
+        return "redirect:/login";       
     }
 
     @GetMapping("/home")

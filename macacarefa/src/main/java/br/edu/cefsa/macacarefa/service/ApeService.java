@@ -2,6 +2,7 @@ package br.edu.cefsa.macacarefa.service;
 
 import br.edu.cefsa.macacarefa.dao.ApeDAO;
 import br.edu.cefsa.macacarefa.model.Ape;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,10 +17,11 @@ public class ApeService implements UserDetailsService {
     private ApeDAO apeDAO;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return apeDAO.findByAttribute("email", email)
                 .map(usuario -> User.builder()
-                    .username(usuario.getUsername())
+                    .username(usuario.getEmail())
                     .password(usuario.getPassword())
                     .roles("USER")
                     .build())
