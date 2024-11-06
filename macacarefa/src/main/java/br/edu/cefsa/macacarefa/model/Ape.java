@@ -5,16 +5,16 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "ape", schema = "macacarefa")
 public class Ape implements Serializable {
-
+    
+    private static final long serialVersionUID = 1L;
+    
     @Id
+    @Basic(optional = false)
     @GeneratedValue
-    @Column(name = "id", nullable = false, unique = true)
+    @Column(name = "ID", nullable = false, unique = true)
     private UUID id;
-
-    @Column(name = "USERNAME", nullable = false, length = 100)
-    private String username;
 
     @Column(name = "NAME", nullable = false, length = 100)
     private String name;
@@ -34,14 +34,6 @@ public class Ape implements Serializable {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getName() {
