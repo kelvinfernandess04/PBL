@@ -52,4 +52,8 @@ public class AuthController {
     public String home() {
         return "home";
     }
+    @GetMapping("/grupo")
+    public String grupo() {
+        return "grupo";
+    }
 }

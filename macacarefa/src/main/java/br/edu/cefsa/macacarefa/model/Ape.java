@@ -7,6 +7,13 @@ import java.util.UUID;
 @Entity
 @Table(name = "ape", schema = "macacarefa")
 public class Ape implements Serializable {
+
+    public Ape(UUID id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
     
     private static final long serialVersionUID = 1L;
     

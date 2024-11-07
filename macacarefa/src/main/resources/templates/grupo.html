@@ -1,0 +1,79 @@
+<!DOCTYPE html> <html lang="pt-BR"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Página do Grupo</title> <style> /* Estilos globais */ body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://i.imgur.com/NSZI3nc.png'); /* Substitua pelo caminho da imagem de fundo */
+    background-size: cover;
+    color: white;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; /* Espaçamento para o header fixo */
+} /* Header */
+.header {
+    width: 100%;
+    padding: 20px;
+    background-color: #000;
+    display: flex;
+    justify-content: space-between; /* Continua alinhando os itens à direita */
+    align-items: center;
+    color: #FFD700; /* Cor dourada */
+    font-size: 1.5em;
+    position: fixed; /* Fixar o header no topo */
+    top: 0;
+    left: 0;
+    z-index: 10; /* Garante que o header fique acima do restante do conteúdo */
+}
+.header .title {
+    font-weight: bold;
+    margin-right: 20px; /* Espaçamento entre o título e os botões */
+}
+.header .menu {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os botões */
+    margin-right: 50px; /* Desloca o menu 50px para a esquerda, mas ainda mantém os botões à direita */
+}
+.menu-button {
+    padding: 10px 20px;
+    border: 2px solid #FFD700;
+    border-radius: 15px;
+    color: #FFD700;
+    background: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+} /* Container de tarefas */
+.task-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap; /* Permite o ajuste em telas menores */
+}
+.task {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+.task-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.task-points {
+    font-size: 1em;
+    color: #FFD700;
+} /* Botão de voltar */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #FFD700;
+    font-size: 1.5em;
+    cursor: pointer;
+    text-decoration: none;
+} </style> </head> <body> <!-- Botão de voltar --> <a href="#" class="back-button">&#9664;</a> <!-- Header --> <header class="header"> <div class="title">Nome do Grupo</div> <div class="menu"> <a href="#" class="menu-button">Loja</a> <a href="#" class="menu-button">Chat</a> <a href="#" class="menu-button">+ Tarefa</a> </div> </header> <!-- Conteúdo abaixo do header VAI SER REMOVIDO --> <div class="task-container"> <div class="task"> <div class="task-title">Tarefa 1</div> <div class="task-points">10 Pontos</div> </div> <div class="task"> <div class="task-title">Tarefa 2</div> <div class="task-points">20 Pontos</div> </div> <div class="task"> <div class="task-title">Tarefa 3</div> <div class="task-points">30 Pontos</div> </div> </div> </body> </html>
