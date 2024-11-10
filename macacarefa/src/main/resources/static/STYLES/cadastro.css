@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Alice&family=Shrikhand&display=swap" rel="stylesheet">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Macacarefa - Cadastro</title>
-        <link href="../static/STYLES/cadastro.css" rel="stylesheet" type="text/css"/>
-        
-        <style>* {
+* {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
@@ -101,20 +90,4 @@
                 position: absolute;
                 top: 20px;
                 left: 20px;
-            }</style>
-    </head>
-    
-    <body>
-        <div class="cadastro-container" >
-            <a href="index"><button class="back-button">Voltar</button></a>
-            <h1 class="title">Macacadastro</h1>
-            <form th:action="@{/cadastro}" th:object="${ape}" method="post">
-                <input type="text" th:field="*{name}" placeholder="Name" required>
-                <input type="email" th:field="*{email}" placeholder="Email" required>
-                <input type="password" th:field="*{password}" placeholder="Senha" required>
-                <button class="cadastro-button" type="submit">Cadastrar</button>
-            </form>
-        </div>
-    </body>
-
-</html>
+            }
