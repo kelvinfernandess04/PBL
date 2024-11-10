@@ -33,15 +33,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers(antMatcher("/h2-console/**")).permitAll()
                 .requestMatchers(toH2Console()).permitAll()
-                .requestMatchers(mvc.pattern("/login"), mvc.pattern("/cadastro"), mvc.pattern("/index"), mvc.pattern("/home"), mvc.pattern("/grupo"), mvc.pattern("/images/*")).permitAll()
+                .requestMatchers(mvc.pattern("/login"), mvc.pattern("/cadastro"), mvc.pattern("/index"), mvc.pattern("/images/*")).permitAll()
                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/home", true)
+                .defaultSuccessUrl("/grupo", true)
                 .failureUrl("/login?error=true")
                 )
-                .logout(logout -> logout.permitAll())
+                .logout(logout -> logout.permitAll()
+                .logoutSuccessUrl("/login"))
                 .csrf(csrf -> csrf
                 .ignoringRequestMatchers(toH2Console()).disable()
                 )
