@@ -38,7 +38,23 @@ public class ApeService implements UserDetailsService {
         throw new UsernameNotFoundException(email);
     }
 
+    @Transactional
+    public void deleteByUsername(String email) throws UsernameNotFoundException {
+        Ape ape;
+        ape = apeRepository.findByEmail(email);
+        //.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+        if (ape != null) {
+            apeRepository.deleteByEmail(email);
+        }
+        throw new UsernameNotFoundException(email);
+    }
+
     public void saveUser(Ape ape) {
         apeDAO.save(ape);
+    }
+    
+    // Novo método para obter o objeto Ape completo
+    public Ape getApeByEmail(String email) {
+        return apeRepository.findByEmail(email); // Retorna o objeto Ape completo
     }
 }

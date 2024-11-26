@@ -1,107 +1,181 @@
-<!DOCTYPE html> <html lang="pt-BR"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Página do Grupo</title> <style> /* Estilos globais */ body {
-                font-family: Arial, sans-serif;
-                background-image: url('https://i.imgur.com/NSZI3nc.png'); /* Substitua pelo caminho da imagem de fundo */
-                background-size: cover;
-                color: white;
-                margin: 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding-top: 80px; /* Espaçamento para o header fixo */
-            } /* Header */
-            .header {
-                width: 100%;
-                padding: 20px;
-                background-color: #000;
-                display: flex;
-                justify-content: space-between; /* Continua alinhando os itens à direita */
-                align-items: center;
-                color: #FFD700; /* Cor dourada */
-                font-size: 1.5em;
-                position: fixed; /* Fixar o header no topo */
-                top: 0;
-                left: 0;
-                z-index: 10; /* Garante que o header fique acima do restante do conteúdo */
-            }
-            .header .title {
-                font-weight: bold;
-                margin-right: 20px; /* Espaçamento entre o título e os botões */
-            }
-            .header .menu {
-                display: flex;
-                gap: 20px; /* Espaçamento entre os botões */
-                margin-right: 50px; /* Desloca o menu 50px para a esquerda, mas ainda mantém os botões à direita */
-            }
-            .menu-button {
-                padding: 10px 20px;
-                border: 2px solid #FFD700;
-                border-radius: 15px;
-                color: #FFD700;
-                background: transparent;
-                font-weight: bold;
-                cursor: pointer;
-                text-decoration: none;
-            } /* Container de tarefas */
-            .task-container {
-                display: flex;
-                gap: 20px;
-                padding: 20px;
-                flex-wrap: wrap; /* Permite o ajuste em telas menores */
-            }
-            .task {
-                width: 150px;
-                height: 150px;
-                border: 2px solid #FFD700;
-                border-radius: 10px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                background-color: rgba(0, 0, 0, 0.6);
-                text-align: center;
-            }
-            .task-title {
-                font-size: 1.2em;
-                margin-bottom: 10px;
-            }
-            .task-points {
-                font-size: 1em;
-                color: #FFD700;
-            } /* Botão de voltar */
-            .back-button {
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                color: #FFD700;
-                font-size: 1.5em;
-                cursor: pointer;
-                text-decoration: none;
-            }
-        </style> 
-    </head> 
-    <body> <!-- Botão de voltar --> 
-        <a href="#" class="back-button">&#9664;</a> 
-        <!-- Header --> <header class="header"> 
-            <div class="title">
-                Nome do Grupo
-            </div> 
-            <div class="menu"> 
-                <a href="/logout" class="menu-button">Logout</a>
-                <a href="#" class="menu-button">Loja</a> 
-                <a href="#" class="menu-button">Chat</a> 
-                <a href="#" class="menu-button">+ Tarefa</a> 
-            </div> 
-        </header> <!-- Conteúdo abaixo do header VAI SER REMOVIDO --> 
-        <div class="task-container"> <div class="task"> 
-                <div class="task-title">Tarefa 1</div> 
-                <div class="task-points">10 Pontos</div> 
-            </div> <div class="task"> 
-                <div class="task-title">Tarefa 2</div> 
-                <div class="task-points">20 Pontos</div> 
-            </div> <div class="task"> 
-                <div class="task-title">Tarefa 3</div> 
-                <div class="task-points">30 Pontos</div> 
-            </div> 
-        </div> 
-    </body> 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Shrikhand&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos globais */
+        body {
+            font-family: "Alice", sans-serif;
+            background-image: url('https://i.imgur.com/NSZI3nc.png');
+            background-size: cover;
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            padding: 20px;
+            background-color: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #FFD700;
+            font-size: 1.5em;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .header .title {
+            font-family: "Alice";
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        /* Botão + Tarefa */
+        .header .menu a:nth-child(4) {
+            margin-right:40px;
+        }
+
+        .menu-button {
+            padding: 10px 20px;
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            color: #FFD700;
+            background: transparent;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: "Alice";
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu-button:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        /* Container de tarefas */
+        .task-container {
+            display: flex;
+            gap: 20px; /* Espaçamento entre as tarefas */
+            padding: 20px;
+            flex-wrap: wrap; /* Permite que as tarefas se movam para a próxima linha, se necessário */
+            justify-content: center; /* Centraliza as tarefas horizontalmente */
+            margin-top: 20px;
+        }
+
+        /* Estilos para cada tarefa */
+        .task {
+            font-family: "Alice";
+            width: 200px; /* Aumente a largura das tarefas */
+            height: 200px; /* Aumentei a altura para acomodar a descrição */
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; /* Garante que os itens fiquem no topo, meio e fundo */
+            background-color: rgba(0, 0, 0, 0.6);
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px; /* Espaçamento entre as tarefas na vertical */
+            transition: transform 0.3s ease, background-color 0.3s ease; /* Efeito de transição */
+        }
+
+        /* Efeito de hover */
+        .task:hover {
+            transform: scale(1.05); /* Aumenta a escala da tarefa */
+            background-color: rgba(0, 0, 0, 0.8); /* Escurece o fundo */
+        }
+
+        /* Título da tarefa */
+        .task-title {
+            font-family: "Alice";
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra no texto para destaque */
+        }
+
+        /* Descrição da tarefa */
+        .task-description {
+            font-size: 1em;
+            color: #fff;
+            margin: 10px 0;
+            flex-grow: 1; /* Faz com que a descrição ocupe o espaço disponível no meio */
+        }
+
+        .task-points {
+            font-size: 1.2em;
+            color: #FFD700;
+            margin-top: 10px; /* Para dar mais espaço entre a descrição e os pontos */
+        }
+
+        /* Botão de voltar */
+        .back-button {
+            font-family: "Alice";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #FFD700;
+            font-size: 1.5em;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        /* Estilo para tornar a tarefa clicável */
+        .task-link {
+            display: block;
+            text-decoration: none; /* Remove o sublinhado do link */
+            color: inherit; /* Mantém a cor do texto original */
+            height: 100%; /* Garante que o link ocupe toda a altura da tarefa */
+            width: 100%; /* Garante que o link ocupe toda a largura da tarefa */
+        }
+    </style>
+</head>
+<body>
+    <!-- Botão de voltar -->
+    <a href="index.html" class="back-button">&#9664; Voltar</a>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="title">
+            Bem-vindo(a)
+        </div>
+        <div class="menu">
+            <a href="/logout" class="menu-button">Logout</a>
+            <a href="#" class="menu-button">Loja</a>
+            <a href="#" class="menu-button">Chat</a>
+            <a th:href="@{/tarefacaco/novo}" class="menu-button">+ Tarefa</a>
+        </div>
+    </header>
+
+    <!-- Container de tarefas -->
+    <div class="task-container">
+        <div th:each="tarefa : ${tarefas}">
+    <!-- Verifique se 'ape' está sendo acessado corretamente -->
+    <a th:href="@{'/tarefacaco/concluir/' + ${tarefa.id} + '/' + ${tarefa.ape.email}}" class="task-link">
+        <div class="task">
+            <div class="task-title" th:text="${tarefa.nome}"></div>
+            <div class="task-description" th:text="${tarefa.descricao}"></div> <!-- Exibindo a descrição -->
+            <div class="task-points" th:text="${tarefa.pontos + ' Pontos'}"></div>
+        </div>
+    </a>
+</div>
+
+    </div>
+    
+</body>
 </html>

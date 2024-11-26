@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <h1>Lista de Tarefacacos</h1>
+<a href="/tarefacaco/novo">Nova Tarefa</a>
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Pontos</th>
+        <th>Usuário Atribuído</th>
+    </tr>
+    <tr th:each="tarefacaco : ${tarefacaco}">
+        <td th:text="${tarefacaco.nome}"></td>
+        <td th:text="${tarefacaco.descricao}"></td>
+        <td th:text="${tarefacaco.pontos}"></td>
+        <td th:text="${tarefacaco.ape.name}"></td>
+        <td>
+            <a th:href="@{'/tarefacaco/editar/' + ${tarefacaco.id}}">Editar</a>
+            <a th:href="@{'/tarefacaco/deletar/' + ${tarefacaco.id}}">Excluir</a>
+        </td>
+    </tr>
+</table>
+
+</html>

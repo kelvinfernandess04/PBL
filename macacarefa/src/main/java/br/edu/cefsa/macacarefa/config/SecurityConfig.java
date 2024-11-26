@@ -38,7 +38,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/grupo", true)
+                .defaultSuccessUrl("/grupo/tarefas", true)
                 .failureUrl("/login?error=true")
                 )
                 .logout(logout -> logout.permitAll()

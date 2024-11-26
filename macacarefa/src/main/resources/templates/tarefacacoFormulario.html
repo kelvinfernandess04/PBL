@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <h1 th:text="${tarefacaco.id != null ? 'Editar' : 'Nova'} + ' Tarefa'"></h1>
+<form th:action="@{/tarefacaco}" th:object="${tarefacaco}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <label for="nome">Nome:</label>
+    <input type="text" th:field="*{nome}" required />
+    <label for="ape">Usuário (Ape):</label>
+<select th:field="*{ape.id}" required>
+    <option th:each="ape : ${apes}" th:value="${ape.id}" th:text="${ape.name}"></option>
+</select>
+
+    <label for="descricao">Descrição:</label>
+    <textarea th:field="*{descricao}" required></textarea>
+    <label for="pontos">Pontos:</label>
+    <input type="number" th:field="*{pontos}" required />
+    <button type="submit">Salvar</button>
+</form>
+
+</html>

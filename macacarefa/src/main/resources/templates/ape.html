@@ -1,0 +1,147 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CRUD de Apes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Shrikhand&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Alice", sans-serif;
+            background-image: url('https://i.imgur.com/hRaVF3W.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #f9ae25;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-family: 'Shrikhand', sans-serif;
+            font-size: 48px;
+            text-align: center;
+            color: #f9ae25;
+            text-shadow: 3px 3px 0px #795411;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            font-family: "Alice", sans-serif;
+            font-size: 18px;
+            color: #f9ae25;
+        }
+
+        th {
+            background-color: #685f43;
+            color: #f9ae25;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        tr:hover {
+            background-color: rgba(104, 95, 67, 0.3);
+        }
+
+        button, a button {
+            font-family: "Alice", sans-serif;
+            background-color: transparent;
+            border: 2px solid #f9ae25;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #f9ae25;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+
+        button:hover, a button:hover {
+            background-color: #685f43;
+            color: #f9ae25;
+        }
+
+        .add-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-buttons button {
+            font-size: 14px;
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CRUD de Apes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ape : ${ape}">
+                    <td th:text="${ape.name}"></td>
+                    <td th:text="${ape.email}"></td>
+                    <td class="action-buttons">
+                        <form action="ape/remover" method="post" style="display: inline;">
+                            <input type="hidden" name="email" th:value="${ape.email}" />
+                            <button type="submit">Remover</button>
+                        </form>
+                        <button type="button" onclick="editarApe('${ape.email}')">
+                            <a th:href="@{/ape/editarApe/{email}(email=${ape.email})}">Editar</a>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="add-button">
+            <a href="/cadastro">
+                <button type="button">Adicionar Ape</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function editarApe(email) {
+            window.location.href = '/ape/editarApe/' + email;
+        }
+    </script>
+</body>
+
+</html>

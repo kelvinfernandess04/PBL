@@ -1,0 +1,134 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Editar Ape</title>
+        <link href="https://fonts.googleapis.com/css2?family=Alice&family=Shrikhand&display=swap" rel="stylesheet">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Alice", sans-serif;
+                background-image: url('https://media.discordapp.net/attachments/1168209151697096757/1305193568163336232/bananas_background.png?ex=673223bb&is=6730d23b&hm=576ffb97f9001810ad59a4ad6329231ff350ac89e7f47a384aafdede8a13c4f9&=&format=webp&quality=lossless&width=1193&height=671');
+                background-size: cover;
+                background-position: center;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #f9ae25;
+            }
+
+            .alice-regular {
+                font-family: "Alice", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            .shrikhand-regular {
+                font-family: "Shrikhand", serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            .login-container {
+                font-family: "Alice", sans-serif;
+                text-align: center;
+                padding: 200px;
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: 15px;
+                max-width: 600px;
+                width: 100%;
+            }
+
+            .title {
+                font-family: 'Shrikhand', sans-serif;
+                font-size: 48px;
+                font-weight: bold;
+                margin-bottom: 40px;
+                color: #f9ae25;
+                text-shadow: 3px 3px 0px #795411;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+                text-align: left;
+                color: #f9ae25;
+            }
+
+            label {
+                font-family: "Alice", sans-serif;
+                font-size: 20px;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                font-family: "Alice", sans-serif;
+                width: 100%;
+                padding: 10px;
+                font-size: 18px;
+                border: 2px solid #f9ae25;
+                border-radius: 8px;
+                background-color: transparent;
+                color: #f9ae25;
+                outline: none;
+            }
+
+            .button-container {
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+            }
+
+            .save-button {
+                font-family: "Alice", sans-serif;
+                background-color: transparent;
+                border: 2px solid #f9ae25;
+                border-radius: 10px;
+                padding: 10px 20px;
+                font-size: 24px;
+                color: #f9ae25;
+                cursor: pointer;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            .save-button:hover {
+                background-color: #685f43;
+                color: #f9ae25;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="login-container">
+            <h1 class="title">Editar Ape</h1>
+
+            <form action="/ape/editar" method="post">
+                <input type="email" id="email" name="email" th:value="${ape.email}" required />
+
+
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" th:value="${ape.name}" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="password">password:</label>
+                    <input type="text" id="password" name="password" th:value="${ape.password}" placeholder="Senha" required />
+                </div>
+
+                <!-- Outros campos que você deseja editar -->
+
+                <div class="button-container">
+                    <button type="submit" class="save-button">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </body>
+
+</html>
