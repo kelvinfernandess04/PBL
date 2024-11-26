@@ -1,28 +1,62 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html>
+<head>
+    <title>Lista de Tarefas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
     <h1>Lista de Tarefacacos</h1>
-<a href="/tarefacaco/novo">Nova Tarefa</a>
-<table>
-    <tr>
-        <th>Nome</th>
-        <th>Descrição</th>
-        <th>Pontos</th>
-        <th>Usuário Atribuído</th>
-    </tr>
-    <tr th:each="tarefacaco : ${tarefacaco}">
-        <td th:text="${tarefacaco.nome}"></td>
-        <td th:text="${tarefacaco.descricao}"></td>
-        <td th:text="${tarefacaco.pontos}"></td>
-        <td th:text="${tarefacaco.ape.name}"></td>
-        <td>
-            <a th:href="@{'/tarefacaco/editar/' + ${tarefacaco.id}}">Editar</a>
-            <a th:href="@{'/tarefacaco/deletar/' + ${tarefacaco.id}}">Excluir</a>
-        </td>
-    </tr>
-</table>
+    <a href="/tarefacaco/novo">Nova Tarefa</a>
+    <canvas id="tarefasChart" width="400" height="200"></canvas>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Pontos</th>
+            <th>Usuário Atribuído</th>
+        </tr>
+        <tr th:each="tarefacaco : ${tarefacaco}">
+            <td th:text="${tarefacaco.nome}"></td>
+            <td th:text="${tarefacaco.descricao}"></td>
+            <td th:text="${tarefacaco.pontos}"></td>
+            <td th:text="${tarefacaco.ape.name}"></td>
+            <td>
+                <a th:href="@{'/tarefacaco/editar/' + ${tarefacaco.id}}">Editar</a>
+                <a th:href="@{'/tarefacaco/deletar/' + ${tarefacaco.id}}">Excluir</a>
+            </td>
+        </tr>
+    </table>
 
+    <script>
+        fetch('/api/graficos/tarefas-por-ape')
+            .then(response => response.json())
+            .then(data => {
+                const labels = Object.keys(data);
+                const valores = Object.values(data);
+
+                const ctx = document.getElementById('tarefasChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Quantidade de Tarefas',
+                            data: valores,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Erro ao carregar dados do gráfico:', error));
+    </script>
+</body>
 </html>
